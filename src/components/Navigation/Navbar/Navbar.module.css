@@ -1,0 +1,36 @@
+.Navbar {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    color: #f3f3f3;
+    background-color: #283747;
+    padding: .5rem;
+}
+
+.Navbar_Logo {
+    display: block;
+    background: url('../../../assets/images/logo.svg') center center / contain no-repeat;
+    width: 3rem;
+    height: 2.3rem;
+}
+
+.Navbar_Item {
+    padding: .5rem;
+}
+
+.Navbar_Item_Login {
+    border: .1rem solid #f3f3f3;
+    border-radius: 0.2rem;
+}
+
+@media (min-width: 769px) {
+    .Navbar {
+        padding: .5rem 1rem;
+    }
+}
+
+@media (min-width: 1366px) {
+    .Navbar_Item {
+        cursor: pointer;
+    }
+}

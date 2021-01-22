@@ -1,0 +1,31 @@
+.Station {
+    border: 1px solid #283747;
+    margin: 0 auto .8rem auto;
+    padding: .8rem .5rem;
+    border-radius: .2rem;
+    height: 2.9rem;
+    transition: height .15s ease-out;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.Station_Selected {
+    height: 10rem;
+}
+
+@media (min-width: 769px) {
+    .Station {
+        width: 35rem;
+    }
+
+    .Station:hover {
+        background-color: rgba(40, 55, 71, .1);
+    }
+}
+
+@media (min-width: 1366px) {
+    .Station {
+        cursor: pointer;
+    }
+}

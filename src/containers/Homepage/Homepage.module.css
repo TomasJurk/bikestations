@@ -1,0 +1,13 @@
+.Homepage {
+    min-height: 100vh;
+    background-color: #f3f3f3;
+    color: #283747;
+}
+
+.Header {
+    margin: 2rem auto 1rem auto;
+}
+
+.StationsList {
+    padding: .5rem;
+}
