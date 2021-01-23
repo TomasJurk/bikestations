@@ -1,4 +1,7 @@
 .Navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
     list-style: none;
     display: flex;
     align-items: center;

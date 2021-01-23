@@ -12,25 +12,30 @@
 
 .Station_Selected {
     height: 10rem;
+    background-color: rgb(236, 235, 235);
 }
 
 .MapLink {
     width: fit-content;
     margin: 0 auto;
     padding: .4rem 3rem;
-    background-color: #283747;
+    background-color: #932432;
     border-radius: .2rem;
     font-size: .85rem;
     text-decoration: none;
     color: #f3f3f3;
 }
 
+.Station_Name {
+    text-decoration: underline;
+}
+
 .Station_Info {
     opacity: 1;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    transition: all .15s ease-out;
+    justify-content: space-around;
+    transition: all .1s ease-out;
 }
 
 .Station_Info_Fade {
@@ -47,12 +52,12 @@
     }
 
     .Station:hover {
-        background-color: rgba(40, 55, 71, .1);
+        background-color: rgb(236, 235, 235);
     }
 }
 
 @media (min-width: 1366px) {
-    .Station, .MapLink {
+    .MapLink {
         cursor: pointer;
     }
 
