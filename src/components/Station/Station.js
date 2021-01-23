@@ -4,16 +4,17 @@ import styles from './Station.module.css';
 
 const Station = (props) => {
 
-    const classes = [styles.Station];
 
-    if (props.selected) {
-        classes.push(styles.Station_Selected);
-    }
+    const googleMapLink = `http://www.google.com/maps/place/${props.lat},${props.lon}`
 
     return (
-        <div className={classes.join(' ')} onClick={props.select}>
-            <p>Oslo Station</p>
-            <a href="http://www.google.com/maps/place/49.46800006494457,17.11514008755796" target="_blank" rel="noreferrer">Show on map</a>
+        <div className={[styles.Station, props.selected ? styles.Station_Selected : null].join(' ')} onClick={props.select}>
+            <h4>Station: "{props.name}"</h4>
+            <div className={['spacer', styles.Station_Info, props.selected ? null : styles.Station_Info_Fade].join(' ')}>
+                <p>Address: {props.address}</p>
+
+                <a className={styles.MapLink} href={googleMapLink} target="_blank" rel="noreferrer">Show on map</a>
+            </div>
         </div>
     )
 }
