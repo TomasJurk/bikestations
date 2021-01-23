@@ -4,6 +4,7 @@ import axios from 'axios';
 import styles from './Homepage.module.css';
 import Station from '../../components/Station/Station';
 import Navbar from '../../components/Navigation/Navbar/Navbar';
+import Spinner from '../../components/UI/Spinner/Spinner';
 
 class Homepage extends Component {
 
@@ -58,7 +59,7 @@ class Homepage extends Component {
     }
 
     render() {
-        let stations = null;
+        let stations = <Spinner />;
         console.time('Try')
         if (this.state.error) {
             stations = (
