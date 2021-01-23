@@ -15,8 +15,6 @@ class Homepage extends Component {
     }
 
     componentDidMount() {
-        // res.data.data.stations.filter(station => station['availability']['num_bikes_available'] ? true : false)
-
         const body = {
             query: `{
                 stations {
@@ -32,7 +30,6 @@ class Homepage extends Component {
                 }
             }`
         } 
-
         axios.post('https://gbfs-graphql.vercel.app/api/graphql', body)
             .then(res => {
                 const stations = res.data.data.stations.filter(station => {
@@ -42,13 +39,15 @@ class Homepage extends Component {
                     }
                     return false;
                 });
-                console.log(stations)
                 this.setState({stations: stations})
             })
             .catch(err => this.setState({error: true}))
     }
 
     selectStationHandler = (i) => {
+        if (this.state.stations[i].selected) {
+            return;
+        }
         const stations = this.state.stations.map(s => {
             const station = {...s}
             station.selected = false;
@@ -62,11 +61,7 @@ class Homepage extends Component {
         let stations = <Spinner />;
         console.time('Try')
         if (this.state.error) {
-            stations = (
-                <div>
-                    <h3 style={{textAlign: 'center', color: 'red'}}>Something went wrong!</h3>
-                </div>
-            );
+            stations = <h3 style={{textAlign: 'center', color: 'red'}}>Something went wrong!</h3>;
         }
 
         if (!this.state.error && this.state.stations.length) {
