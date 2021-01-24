@@ -15,7 +15,7 @@
     background-color: rgb(236, 235, 235);
 }
 
-.MapLink {
+.Map_Link {
     width: fit-content;
     margin: 0 auto;
     padding: .4rem 3rem;
@@ -42,10 +42,6 @@
     opacity: 0;
 }
 
-.OneLineContent {
-    margin-bottom: 8rem;
-}
-
 @media (min-width: 769px) {
     .Station {
         width: 35rem;
@@ -57,7 +53,7 @@
 }
 
 @media (min-width: 1366px) {
-    .MapLink {
+    .Map_Link {
         cursor: pointer;
     }
 

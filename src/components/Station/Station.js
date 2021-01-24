@@ -4,7 +4,6 @@ import styles from './Station.module.css';
 
 const Station = (props) => {
 
-
     const googleMapLink = `http://www.google.com/maps/place/${props.lat},${props.lon}`
 
     return (
@@ -14,7 +13,7 @@ const Station = (props) => {
                 <p>Address: {props.address}</p>
                 <p>Available bikes: {props.availBike}</p>
                 <p>Available docks: {props.availDock}</p>
-                <a className={styles.MapLink} href={googleMapLink} target="_blank" rel="noreferrer">Show on map</a>
+                <a className={styles.Map_Link} href={googleMapLink} target="_blank" rel="noreferrer">Show on map</a>
             </div>
         </div>
     )

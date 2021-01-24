@@ -11,7 +11,8 @@ class Homepage extends Component {
     state = {
         stations: [],
         loading: true,
-        error: false
+        error: false,
+        stationsLoaded: 20
     }
 
     componentDidMount() {
@@ -32,13 +33,14 @@ class Homepage extends Component {
         } 
         axios.post('https://gbfs-graphql.vercel.app/api/graphql', body)
             .then(res => {
-                const stations = res.data.data.stations.filter(station => {
-                    if (station['availability']['num_bikes_available'] && station['availability']['num_docks_available']) {
-                        station.selected = false;
-                        return true;
-                    }
-                    return false;
-                });
+                const stations = res.data.data.stations
+                    .filter(station => {
+                        if (station['availability']['num_bikes_available'] && station['availability']['num_docks_available']) {
+                            station.selected = false;
+                            return true;
+                        }
+                        return false;
+                    });
                 this.setState({stations: stations})
             })
             .catch(err => this.setState({error: true}))
@@ -57,15 +59,20 @@ class Homepage extends Component {
         this.setState({ stations: stations });
     }
 
+    loadMoreStationsHandler = () => {
+        const loaded = this.state.stationsLoaded;
+        this.setState({stationsLoaded: loaded + 20});
+    }
+
     render() {
         let stations = <Spinner />;
-        console.time('Try')
+        
         if (this.state.error) {
             stations = <h3 style={{textAlign: 'center', color: 'red'}}>Something went wrong!</h3>;
         }
 
         if (!this.state.error && this.state.stations.length) {
-            stations = this.state.stations
+            stations = this.state.stations.slice(0, this.state.stationsLoaded)
                 .map((station, i) => {
                     return <Station 
                                 key={station['station_id']}
@@ -79,14 +86,22 @@ class Homepage extends Component {
                                 select={() => this.selectStationHandler(i)} />
                 });
         }
-        console.timeEnd('Try')
+
+        let loadBtnStyle = null;
+        if (this.state.stationsLoaded >= this.state.stations.length) {
+            loadBtnStyle = {display: 'none'}
+        }
+        
         return (
             <div className={styles.Homepage}>
                 <Navbar />
                 <h1 className={styles.Header}>Available bikes at:</h1>
                 <main>
-                    <div className={styles.StationsList}>
+                    <div className={styles.Stations_List}>
                         {stations}
+                        <div className={styles.Load_More} style={loadBtnStyle} onClick={() => this.loadMoreStationsHandler()}>
+                            <p>Load more</p>
+                        </div>
                     </div>
                 </main>
             </div>
